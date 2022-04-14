@@ -1,0 +1,1 @@
+FROM log_base:001

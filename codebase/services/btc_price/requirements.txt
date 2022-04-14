@@ -1,0 +1,6 @@
+fastapi # asgi web server
+uvicorn # asgi
+requests # http requests
+pydantic # models
+fluent-logger # event logging
+inflection # casing

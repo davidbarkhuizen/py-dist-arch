@@ -1,0 +1,9 @@
+fastapi # asgi web server
+uvicorn # asgi
+requests # http requests
+pydantic # models
+fluent-logger # event logging
+sqlalchemy # orm
+psycopg2 # postgresql
+pika # rabbitmq
+inflection # casing

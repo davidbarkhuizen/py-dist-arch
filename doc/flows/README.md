@@ -1,0 +1,1 @@
+the *.websequencediagrams.com files in this folder contain source that should be copied into the editor @ websequencediagrams.com

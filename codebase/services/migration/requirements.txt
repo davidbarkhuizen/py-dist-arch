@@ -1,0 +1,10 @@
+pydantic # models
+fluent-logger # event logging
+sqlalchemy # orm
+psycopg2 # postgresql
+yoyo-migrations # db migrations
+fastapi # asgi web server
+uvicorn # asgi
+requests # http requests
+pydantic # models
+inflection # casing
