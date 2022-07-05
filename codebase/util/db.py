@@ -9,7 +9,7 @@ from sqlalchemy.orm.session import Session
 from sqlalchemy.sql.expression import text
 
 from util.events import log_event
-from model.logevent import ConnectedToDatabase, FailedToConectToDatabase
+from model.logevent import ConnectedToDatabase, FailedToConnectToDatabase
 
 def connection_string(port, host, database, user, password):
     return f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
@@ -33,7 +33,7 @@ def get_tested_database_engine(ep: DatabaseEndPoint):
             
         except OperationalError as e:
             log_event(
-                FailedToConectToDatabase(
+                FailedToConnectToDatabase(
                     database=ep.database,
                     port=ep.port,
                     host=ep.host,

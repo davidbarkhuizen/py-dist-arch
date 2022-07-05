@@ -34,7 +34,7 @@ class ConnectedToDatabase(BaseModel):
     host: str
     user: str
 
-class FailedToConectToDatabase(ConnectedToDatabase):
+class FailedToConnectToDatabase(ConnectedToDatabase):
     error: str
 
 class ServiceStarted(BaseModel):
