@@ -78,153 +78,153 @@ services:
     logging:
       driver: "none"
 
-  # queue:
-  #   container_name: ${Q_HOST}
-  #   image: queue:001
-  #   networks:
-  #     - internal
-  #   # volumes:
-  #   #   - ./log/rabbitmq/:/external/log/
-  #   environment:
-  #     RABBITMQ_NODENAME: 'rabbit@queue'
-  #     RABBITMQ_NODE_PORT: ${Q_PORT}
-  #     # RABBITMQ_LOGS: '/var/log/rabbitmq/rabbitmq.log'
-  #   ports:
-  #     - "${Q_EXT_ADMIN_PORT}:15672"
-  #   expose:
-  #     - ${Q_PORT}
-  #   logging:
-  #     driver: "none"
+  queue:
+    container_name: ${Q_HOST}
+    image: queue:001
+    networks:
+      - internal
+    # volumes:
+    #   - ./log/rabbitmq/:/external/log/
+    environment:
+      RABBITMQ_NODENAME: 'rabbit@queue'
+      RABBITMQ_NODE_PORT: ${Q_PORT}
+      # RABBITMQ_LOGS: '/var/log/rabbitmq/rabbitmq.log'
+    ports:
+      - "${Q_EXT_ADMIN_PORT}:15672"
+    expose:
+      - ${Q_PORT}
+    logging:
+      driver: "none"
 
-  # read_model_sync:
-  #   container_name: ${READ_MODEL_SYNC_HOST}
-  #   image: read_model_sync:001
-  #   networks:
-  #     - internal
-  #   environment:
-  #     SERVICE_PORT: ${BTC_PRICE_PORT}
-  #     SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
+  read_model_sync:
+    container_name: ${READ_MODEL_SYNC_HOST}
+    image: read_model_sync:001
+    networks:
+      - internal
+    environment:
+      SERVICE_PORT: ${BTC_PRICE_PORT}
+      SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
 
-  #     LOGGING_HOST: ${LOGGING_HOST}
-  #     LOGGING_PORT: ${LOGGING_PORT}
-  #     LOGGING_RETRY_S: ${LOGGING_RETRY_S}
+      LOGGING_HOST: ${LOGGING_HOST}
+      LOGGING_PORT: ${LOGGING_PORT}
+      LOGGING_RETRY_S: ${LOGGING_RETRY_S}
 
-  #     MIGRATION_PROTOCOL: ${MIGRATION_PROTOCOL}
-  #     MIGRATION_HOST: ${MIGRATION_HOST}
-  #     MIGRATION_PORT: ${MIGRATION_PORT}
+      MIGRATION_PROTOCOL: ${MIGRATION_PROTOCOL}
+      MIGRATION_HOST: ${MIGRATION_HOST}
+      MIGRATION_PORT: ${MIGRATION_PORT}
 
-  #     Q_PORT: ${Q_PORT}
-  #     Q_HOST: ${Q_HOST}
-  #     Q_EXCHANGE: ${Q_EXCHANGE}
-  #     Q_CLIENT_CONNECT_RETRY_S: ${Q_CLIENT_CONNECT_RETRY_S}
+      Q_PORT: ${Q_PORT}
+      Q_HOST: ${Q_HOST}
+      Q_EXCHANGE: ${Q_EXCHANGE}
+      Q_CLIENT_CONNECT_RETRY_S: ${Q_CLIENT_CONNECT_RETRY_S}
 
-  #     READ_MODEL_DB_HOST: ${READ_MODEL_DB_HOST}
-  #     READ_MODEL_DB_PORT: ${READ_MODEL_DB_PORT}
-  #     READ_MODEL_DB_NAME: ${READ_MODEL_DB_NAME}
-  #     READ_MODEL_DB_USER: ${READ_MODEL_DB_USER}
-  #     READ_MODEL_DB_PWD: ${READ_MODEL_DB_PWD}
-  #     READ_MODEL_DB_RETRY_WAIT_S: ${READ_MODEL_DB_RETRY_WAIT_S}
-  #   depends_on:
-  #     - log
-  #     - queue
-  #     - read_model
-  #   logging:
-  #     driver: "none"
+      READ_MODEL_DB_HOST: ${READ_MODEL_DB_HOST}
+      READ_MODEL_DB_PORT: ${READ_MODEL_DB_PORT}
+      READ_MODEL_DB_NAME: ${READ_MODEL_DB_NAME}
+      READ_MODEL_DB_USER: ${READ_MODEL_DB_USER}
+      READ_MODEL_DB_PWD: ${READ_MODEL_DB_PWD}
+      READ_MODEL_DB_RETRY_WAIT_S: ${READ_MODEL_DB_RETRY_WAIT_S}
+    depends_on:
+      - log
+      - queue
+      - read_model
+    logging:
+      driver: "none"
 
-  # btc_price:
-  #   container_name: ${BTC_PRICE_HOST}
-  #   image: btc_price:001
-  #   networks:
-  #     - internal
-  #   environment:
-  #     SERVICE_PORT: ${BTC_PRICE_PORT}
-  #     SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
+  btc_price:
+    container_name: ${BTC_PRICE_HOST}
+    image: btc_price:001
+    networks:
+      - internal
+    environment:
+      SERVICE_PORT: ${BTC_PRICE_PORT}
+      SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
 
-  #     LOGGING_HOST: ${LOGGING_HOST}
-  #     LOGGING_PORT: ${LOGGING_PORT}
-  #     LOGGING_RETRY_S: ${LOGGING_RETRY_S}
+      LOGGING_HOST: ${LOGGING_HOST}
+      LOGGING_PORT: ${LOGGING_PORT}
+      LOGGING_RETRY_S: ${LOGGING_RETRY_S}
 
-  #     CB_PROTOCOL: ${CB_PROTOCOL}
-  #     CB_HOST: ${CB_HOST}
-  #     CB_PORT: ${CB_PORT}
-  #     CB_PATH: ${CB_PATH}
-  #   expose:
-  #     - ${BTC_PRICE_PORT}
-  #   logging:
-  #     driver: "none"
+      CB_PROTOCOL: ${CB_PROTOCOL}
+      CB_HOST: ${CB_HOST}
+      CB_PORT: ${CB_PORT}
+      CB_PATH: ${CB_PATH}
+    expose:
+      - ${BTC_PRICE_PORT}
+    logging:
+      driver: "none"
 
-  # create_buy_order:
-  #   container_name: ${CREATE_BUY_ORDER_HOST}
-  #   image: create_buy_order:001
-  #   restart: always
-  #   environment:
-  #     SERVICE_PORT: ${CREATE_BUY_ORDER_PORT}
-  #     SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
+  create_buy_order:
+    container_name: ${CREATE_BUY_ORDER_HOST}
+    image: create_buy_order:001
+    restart: always
+    environment:
+      SERVICE_PORT: ${CREATE_BUY_ORDER_PORT}
+      SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
 
-  #     Q_PORT: ${Q_PORT}
-  #     Q_HOST: ${Q_HOST}
-  #     Q_EXCHANGE: ${Q_EXCHANGE}
+      Q_PORT: ${Q_PORT}
+      Q_HOST: ${Q_HOST}
+      Q_EXCHANGE: ${Q_EXCHANGE}
 
-  #     LOGGING_HOST: ${LOGGING_HOST}
-  #     LOGGING_PORT: ${LOGGING_PORT}
-  #     LOGGING_RETRY_S: ${LOGGING_RETRY_S}
+      LOGGING_HOST: ${LOGGING_HOST}
+      LOGGING_PORT: ${LOGGING_PORT}
+      LOGGING_RETRY_S: ${LOGGING_RETRY_S}
       
-  #     WRITE_MODEL_DB_HOST: write_model
-  #     WRITE_MODEL_DB_PORT: ${WRITE_MODEL_DB_PORT}
-  #     WRITE_MODEL_DB_NAME: ${WRITE_MODEL_DB_NAME}
-  #     WRITE_MODEL_DB_USER: ${WRITE_MODEL_DB_USER}
-  #     WRITE_MODEL_DB_PWD: ${WRITE_MODEL_DB_PWD}
-  #     WRITE_MODEL_DB_RETRY_WAIT_S: ${WRITE_MODEL_DB_RETRY_WAIT_S}
+      WRITE_MODEL_DB_HOST: write_model
+      WRITE_MODEL_DB_PORT: ${WRITE_MODEL_DB_PORT}
+      WRITE_MODEL_DB_NAME: ${WRITE_MODEL_DB_NAME}
+      WRITE_MODEL_DB_USER: ${WRITE_MODEL_DB_USER}
+      WRITE_MODEL_DB_PWD: ${WRITE_MODEL_DB_PWD}
+      WRITE_MODEL_DB_RETRY_WAIT_S: ${WRITE_MODEL_DB_RETRY_WAIT_S}
 
-  #     MIGRATION_PROTOCOL: ${MIGRATION_PROTOCOL}
-  #     MIGRATION_HOST: ${MIGRATION_HOST}
-  #     MIGRATION_PORT: ${MIGRATION_PORT}
+      MIGRATION_PROTOCOL: ${MIGRATION_PROTOCOL}
+      MIGRATION_HOST: ${MIGRATION_HOST}
+      MIGRATION_PORT: ${MIGRATION_PORT}
 
-  #     BTC_PRICE_PROTOCOL: ${BTC_PRICE_PROTOCOL}
-  #     BTC_PRICE_HOST: ${BTC_PRICE_HOST}
-  #     BTC_PRICE_PORT: ${BTC_PRICE_PORT}
-  #   ports:
-  #     - "${CREATE_BUY_ORDER_EXT_PORT}:${CREATE_BUY_ORDER_PORT}"
-  #   networks:
-  #     - internal
-  #   depends_on:
-  #     - log
-  #     - write_model     
-  #     - queue
-  #   logging:
-  #     driver: "none"
+      BTC_PRICE_PROTOCOL: ${BTC_PRICE_PROTOCOL}
+      BTC_PRICE_HOST: ${BTC_PRICE_HOST}
+      BTC_PRICE_PORT: ${BTC_PRICE_PORT}
+    ports:
+      - "${CREATE_BUY_ORDER_EXT_PORT}:${CREATE_BUY_ORDER_PORT}"
+    networks:
+      - internal
+    depends_on:
+      - log
+      - write_model     
+      - queue
+    logging:
+      driver: "none"
 
-  # fetch_buy_orders:
-  #   container_name: ${FETCH_BUY_ORDERS_HOST}
-  #   image: fetch_buy_orders:001
-  #   restart: always
-  #   environment:
-  #     SERVICE_PORT: ${FETCH_BUY_ORDERS_PORT}
-  #     SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
+  fetch_buy_orders:
+    container_name: ${FETCH_BUY_ORDERS_HOST}
+    image: fetch_buy_orders:001
+    restart: always
+    environment:
+      SERVICE_PORT: ${FETCH_BUY_ORDERS_PORT}
+      SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
 
-  #     LOGGING_HOST: ${LOGGING_HOST}
-  #     LOGGING_PORT: ${LOGGING_PORT}
-  #     LOGGING_RETRY_S: ${LOGGING_RETRY_S}
+      LOGGING_HOST: ${LOGGING_HOST}
+      LOGGING_PORT: ${LOGGING_PORT}
+      LOGGING_RETRY_S: ${LOGGING_RETRY_S}
       
-  #     MIGRATION_PROTOCOL: ${MIGRATION_PROTOCOL}
-  #     MIGRATION_HOST: ${MIGRATION_HOST}
-  #     MIGRATION_PORT: ${MIGRATION_PORT}
+      MIGRATION_PROTOCOL: ${MIGRATION_PROTOCOL}
+      MIGRATION_HOST: ${MIGRATION_HOST}
+      MIGRATION_PORT: ${MIGRATION_PORT}
 
-  #     READ_MODEL_DB_HOST: ${READ_MODEL_DB_HOST}
-  #     READ_MODEL_DB_PORT: ${READ_MODEL_DB_PORT}
-  #     READ_MODEL_DB_NAME: ${READ_MODEL_DB_NAME}
-  #     READ_MODEL_DB_USER: ${READ_MODEL_DB_USER}
-  #     READ_MODEL_DB_PWD: ${READ_MODEL_DB_PWD}
-  #     READ_MODEL_DB_RETRY_WAIT_S: ${READ_MODEL_DB_RETRY_WAIT_S}
-  #   ports:
-  #     - "${FETCH_BUY_ORDERS_EXT_PORT}:${FETCH_BUY_ORDERS_PORT}"
-  #   networks:
-  #     - internal
-  #   depends_on:
-  #     - log
-  #     - read_model
-  #   logging:
-  #     driver: "none"
+      READ_MODEL_DB_HOST: ${READ_MODEL_DB_HOST}
+      READ_MODEL_DB_PORT: ${READ_MODEL_DB_PORT}
+      READ_MODEL_DB_NAME: ${READ_MODEL_DB_NAME}
+      READ_MODEL_DB_USER: ${READ_MODEL_DB_USER}
+      READ_MODEL_DB_PWD: ${READ_MODEL_DB_PWD}
+      READ_MODEL_DB_RETRY_WAIT_S: ${READ_MODEL_DB_RETRY_WAIT_S}
+    ports:
+      - "${FETCH_BUY_ORDERS_EXT_PORT}:${FETCH_BUY_ORDERS_PORT}"
+    networks:
+      - internal
+    depends_on:
+      - log
+      - read_model
+    logging:
+      driver: "none"
 
 networks:
   internal:
