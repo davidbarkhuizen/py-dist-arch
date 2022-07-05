@@ -5,10 +5,10 @@ from services.create_buy_order.rqrsp import CreateBuyOrderResponse
 from model.common import MAX_BUY_ORDER_SIZE_EXCLUSIVE_ANY_CURRENCY_UNIT, SUPPORTED_CURRENCIES, Currency
 from test.utils import put_buy_order, create_buy_order_request, is_200, random_string_not_in
 
-class TestBuyOrderService(unittest.TestCase):
+class TestCreateBuyOrderService(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
-        super(TestBuyOrderService, self).__init__(*args, **kwargs)
+        super(TestCreateBuyOrderService, self).__init__(*args, **kwargs)
 
     def setUp(self):
         pass

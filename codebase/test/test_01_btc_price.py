@@ -1,6 +1,6 @@
+# from util.env import endpoint_from_env
 # from model.common import SUPPORTED_CURRENCIES
-# from util.web import endpoint_from_env, url_for_endpoint
-# from test.utils.util import ok
+# from util.web import url_for_endpoint
 # import unittest
 # import requests
 
@@ -22,4 +22,4 @@
 #         for currency in SUPPORTED_CURRENCIES:        
 #             order = { 'currency': currency, 'amount': 1 }
 #             rsp = requests.put(price_url, json=order)        
-#             self.assertTrue(ok(rsp))
+#             self.assertIn(rsp.status_code, [200])
