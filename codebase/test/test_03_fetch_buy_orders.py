@@ -12,10 +12,10 @@ fetch_buy_orders_url = url_for_endpoint(fetch_buy_orders_ep)
 buyorder_ep = endpoint_from_env('create_buy_order')
 buyorder_url = url_for_endpoint(buyorder_ep)
 
-class TestBuyOrderService(unittest.TestCase):
+class TestFetchBuyOrderService(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
-        super(TestBuyOrderService, self).__init__(*args, **kwargs)
+        super(TestFetchBuyOrderService, self).__init__(*args, **kwargs)
 
     def setUp(self):
         pass
@@ -27,7 +27,7 @@ class TestBuyOrderService(unittest.TestCase):
         rsp = requests.get(fetch_buy_orders_url)   
         self.assertEqual(rsp.status_code, 200)
 
-    def non_default_page_size(self):                
+    def test_non_default_page_size(self):                
         non_default_page_size = 19
         rsp = requests.get(fetch_buy_orders_url, params={'page_size': non_default_page_size})   
         self.assertEqual(rsp.status_code, 200)

@@ -27,7 +27,7 @@ services:
     expose:
       - "${WRITE_MODEL_DB_PORT}"
     ports:
-      - "${WRITE_MODEL_EXT_DB_PORT}:${WRITE_MODEL_DB_PORT}"
+      - "${WRITE_MODEL_DB_EXT_PORT}:${WRITE_MODEL_DB_PORT}"
     logging:
       driver: "none"
 
@@ -43,7 +43,7 @@ services:
     expose:
       - "${READ_MODEL_DB_PORT}"
     ports:
-      - "${READ_MODEL_EXT_DB_PORT}:${READ_MODEL_DB_PORT}"
+      - "${READ_MODEL_DB_EXT_PORT}:${READ_MODEL_DB_PORT}"
     logging:
       driver: "none"
 
@@ -60,7 +60,7 @@ services:
       SERVICE_PORT: ${MIGRATION_PORT}
       SERVICE_HOST: ${DEFAULT_SERVICE_LISTEN_HOST}
       
-      WRITE_MODEL_DB_HOST: write_model
+      WRITE_MODEL_DB_HOST: ${WRITE_MODEL_DB_HOST}
       WRITE_MODEL_DB_PORT: ${WRITE_MODEL_DB_PORT}
       WRITE_MODEL_DB_NAME: ${WRITE_MODEL_DB_NAME}
       WRITE_MODEL_DB_USER: ${WRITE_MODEL_DB_USER}
