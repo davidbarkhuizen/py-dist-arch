@@ -120,8 +120,3 @@ Note:  the combination of (idempotence_key, currency, amount) must be unique
 Note:  `last_reference`  
 - refers to the id of the last row on the previous page  
 - is explictly returned for each page, for use in retrieving the next page
-
-## Issues 2022-07-05
-
-- need to install pydantic on host machine for tests: pip3 install pydantic
-- 
