@@ -82,8 +82,8 @@ fetch_buy_orders|expose fetch buy orders @ GET http://localhost:8778/buy_orders
 
 ### Monitoring
 
-- the services emit numerous structured logging events to facilitate operation and fault finding
-- these events are 
+- the services emit numerous structured logging events to facilitate operation and fault finding  
+- these events are emitted to fluentd  
 
 ### Test
 
