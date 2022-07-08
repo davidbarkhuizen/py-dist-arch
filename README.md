@@ -1,14 +1,12 @@
 # distributed python architecture
 
-david.barkhuizen@gmail.com, 2021/09/02
-
 ## Important Note on Authentication, Security & Data Persistence
 
 This demonstration system features no authentication, has not been secured, and is not intended for production use.  Furthermore, no guarantees are made as no data persistence.  While reasonable efforts have been mad eto source components from reputable sources, you use this system entirely at your own risk, and the author accepts no responsibility whatsoever for its use or misuse.
 
 ## Architecture
 
-This POC is is intended to fulfill the functional requirements listed in `docs/specifiction.md`, using the 12 factor app methodology as summarised in `docs/12_factors.md`, and implemented as a containerised solution.  
+This POC is is intended to fulfill the functional requirements listed in `docs/specification.md`, using the 12 factor app methodology as summarised in `docs/12_factors.md`, and implemented as a containerised solution.  
 
 ### Component Technologies
 
