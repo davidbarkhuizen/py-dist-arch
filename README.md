@@ -23,7 +23,11 @@ This POC is is intended to fulfill the functional requirements listed in `docs/s
 
 ### Write/Read Model
 
-The architecture splits the data persistence into a write model and a read model.  The write model is intended as the golden source of truth.  The read model is kept in sync with the write model using an event service (queue).  This allows the write model table structures to be optimized for fast insert and update, whereas by contrast the read model table structures are optimized for fast read.  
+The architecture splits the data persistence into a write model and a read model.  The write model is intended as the golden source of truth.  The read model is kept in sync with the write model using an event service (queue).  This allows the write model table structures to be optimized for fast insert and update, whereas by contrast the read model table structures are optimized for fast read.
+
+#### Create Request Idempotence
+
+A specific requirement was around idempotence of create requests, and there is some complication in the database structure which supports this.  
 
 ## Setup & Installation
 
