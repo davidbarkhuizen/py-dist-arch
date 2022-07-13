@@ -1,12 +1,61 @@
-# distributed python architecture
+# 12-factor Python Micro Service Architecture
 
 ## Important Note on Authentication, Security & Data Persistence
 
 This demonstration system features no authentication, has not been secured, and is not intended for production use.  Furthermore, no guarantees are made as no data persistence.  While reasonable efforts have been mad eto source components from reputable sources, you use this system entirely at your own risk, and the author accepts no responsibility whatsoever for its use or misuse.
 
+## Functional Requirements
+
+API allows its clients to manage BTC buy orders. Clients place orders to purchase BTC for fiat at a market price. API does not create transactions on the Bitcoin blockchain, but simply stores the order information in its database for further processing.
+
+### Create Buy Order
+
+1. Creation of a Buy Order requires the following data at minimum:
+
+* currency - represents the currency (ISO3 code one of: EUR, GBP, USD)
+* amount - represents the amount of currency (0 < x < 1,000,000,000)
+
+2. Successful call should store the order in the database. The following info should be
+stored at a minimum:
+
+* id - order's unique identifier
+* amount - requested fiat amount
+* currency - requested fiat currency
+* exchange rate - value of BTC versus the requested fiat; BTC is the base currency and requested fiat is the quote currency; use the third-party API to source the exchange rates
+* bitcoin amount - amount of BTC which the requested amount of fiat buys at the exchange rate. Use a precision of 8 decimal digits, and always round up. Do not lose precision in calculations
+
+3. Buy Order creation must be idempotent.
+
+4. Sum of bitcoin amount of all orders stored in the system must not exceed 100BTC.
+
+System must not allow creation of new orders which would cause the constraint to be violated.
+
+### Fetch Buy Order Collection
+
+Returns Buy Orders stored in the database in reverse chronological order.
+
+Resources must have the following attributes at minimum: id, amount, currency, exchange rate, bitcoin amount. Responses must be paged. Response time should be the same regardless which page is requested.
+
 ## Architecture
 
-This POC is is intended to fulfill the functional requirements listed in `docs/specification.md`, using the 12 factor app methodology as summarised in `docs/12_factors.md`, and implemented as a containerised solution.  
+### 12 Factor App Methodology
+
+This system attempts to fulfill the [12 factor app methodology](https://12factor.net/):
+
+|Factor|Requirement|
+|------|-----------|
+Codebase|There should be exactly one codebase for a deployed service with the codebase being used for many deployments
+Dependencies|All dependencies should be declared, with no implicit reliance on system tools or libraries
+Config|Configuration that varies between deployments should be stored in the environment
+Backing services|All backing services are treated as attached resources and attached and detached by the execution environment
+Build, release, run|The delivery pipeline should strictly consist of build, release, run
+Processes|Applications should be deployed as one or more stateless processes with persisted data stored on a backing service
+Port binding|Self-contained services should make themselves available to other services by specified ports
+Concurrency|Concurrency is advocated by scaling individual processes
+Disposability|Fast startup and shutdown are advocated for a more robust and resilient system
+Dev/Prod parity|All environments should be as similar as possible
+Logs|Applications should produce logs as event streams and leave the execution environment to aggregate
+Admin Processes|Any needed admin tasks should be kept in source control and packaged with the application
 
 ### Component Technologies
 
@@ -16,7 +65,7 @@ This POC is is intended to fulfill the functional requirements listed in `docs/s
 |ORM|SqlAlchemy|
 |Models|Pydantic|
 |REST server|FastAPI|
-|Queue|RabbitMQ|
+|Queue|RabbitMQ (pika)|
 |Structured Event Logging|FluentD|
 
 ### Write/Read Model
