@@ -6,5 +6,4 @@ yoyo-migrations # db migrations
 fastapi # asgi web server
 uvicorn # asgi
 requests # http requests
-pydantic # models
 inflection # casing
