@@ -1,5 +1,3 @@
-FROM create_buy_order_base:001
-WORKDIR /xapo
-COPY codebase/ ./codebase/
-WORKDIR /xapo/codebase/
+FROM create-buy-order-base:latest
+
 CMD ["python", "create_buy_order_service.py"]

@@ -1,5 +1,3 @@
-FROM read_model_sync_base:001
-WORKDIR /xapo
-COPY codebase/ ./codebase/
-WORKDIR /xapo/codebase/
+FROM read-model-sync-base:latest
+
 CMD ["python", "read_model_sync_service.py"]

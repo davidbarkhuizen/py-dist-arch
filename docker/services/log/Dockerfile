@@ -1,1 +1,1 @@
-FROM log_base:001
+FROM log-base:latest

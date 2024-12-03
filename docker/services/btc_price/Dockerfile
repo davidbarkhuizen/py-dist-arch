@@ -1,5 +1,3 @@
-FROM btc_price_base:001
-WORKDIR /xapo
-COPY codebase/ ./codebase/
-WORKDIR /xapo/codebase/
+FROM btc-price-base:latest
+
 CMD ["python", "btc_price_service.py"]

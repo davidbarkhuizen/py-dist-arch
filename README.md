@@ -110,7 +110,7 @@ Using the migration service as an example, the following pattern is adhered to:
 ```docker/services/migration/Dockerfile.base```
 ```
 FROM python:3.8.2-alpine
-WORKDIR /xapo
+WORKDIR /pydist
 RUN apk update
 RUN apk add linux-headers musl-dev build-base gcc python-dev postgresql-dev curl
 RUN /usr/local/bin/python -m pip install --upgrade pip
@@ -124,10 +124,10 @@ The run image is simply the base image with the codebase installed and ready to 
 
 ```docker/services/migration/Dockerfile```
 ```
-FROM migration_base:001
-WORKDIR /xapo
+FROM migration-base:latest
+WORKDIR /pydist
 COPY codebase/ ./codebase/
-WORKDIR /xapo/codebase/
+WORKDIR /pydist/codebase/
 CMD ["python", "migration_service.py"]
 ```
 
