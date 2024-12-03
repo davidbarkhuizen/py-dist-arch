@@ -2,7 +2,7 @@ pydantic # models
 fluent-logger # event logging
 sqlalchemy # orm
 psycopg2 # postgresql
-yoyo-migrations # db migrations
+yoyo-migrations==8.2.0 # db migrations
 fastapi # asgi web server
 uvicorn # asgi
 requests # http requests

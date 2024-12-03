@@ -1,1 +1,1 @@
-FROM db_base:001
+FROM db-base:latest

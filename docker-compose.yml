@@ -4,7 +4,7 @@ services:
 
   log:
     container_name: ${LOGGING_HOST}
-    image: log:001
+    image: log:latest
     restart: always
     volumes:
       - logging_data:/fluentd/log
@@ -17,7 +17,7 @@ services:
 
   write_model:
     container_name: ${WRITE_MODEL_DB_HOST}
-    image: write_model:001
+    image: write_model:latest
     networks:
       - internal
     environment:
@@ -33,7 +33,7 @@ services:
 
   read_model:
     container_name: ${READ_MODEL_DB_HOST}
-    image: read_model:001
+    image: read_model:latest
     networks:
       - internal
     environment:
@@ -49,7 +49,7 @@ services:
 
   migration:
     container_name: ${MIGRATION_HOST}
-    image: migration:001
+    image: migration:latest
     networks:
       - internal
     environment:
@@ -75,12 +75,12 @@ services:
       READ_MODEL_DB_RETRY_WAIT_S: ${READ_MODEL_DB_RETRY_WAIT_S}
     expose:
       - ${MIGRATION_PORT}
-    logging:
-      driver: "none"
+    # logging:
+    #   driver: "none"
 
   queue:
     container_name: ${Q_HOST}
-    image: queue:001
+    image: queue:latest
     networks:
       - internal
     # volumes:
@@ -98,7 +98,7 @@ services:
 
   read_model_sync:
     container_name: ${READ_MODEL_SYNC_HOST}
-    image: read_model_sync:001
+    image: read_model_sync:latest
     networks:
       - internal
     environment:
@@ -133,7 +133,7 @@ services:
 
   btc_price:
     container_name: ${BTC_PRICE_HOST}
-    image: btc_price:001
+    image: btc_price:latest
     networks:
       - internal
     environment:
@@ -155,7 +155,7 @@ services:
 
   create_buy_order:
     container_name: ${CREATE_BUY_ORDER_HOST}
-    image: create_buy_order:001
+    image: create_buy_order:latest
     restart: always
     environment:
       SERVICE_PORT: ${CREATE_BUY_ORDER_PORT}
@@ -196,7 +196,7 @@ services:
 
   fetch_buy_orders:
     container_name: ${FETCH_BUY_ORDERS_HOST}
-    image: fetch_buy_orders:001
+    image: fetch_buy_orders:latest
     restart: always
     environment:
       SERVICE_PORT: ${FETCH_BUY_ORDERS_PORT}

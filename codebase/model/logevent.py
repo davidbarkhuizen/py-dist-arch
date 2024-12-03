@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 class LoggingTag(Enum):
-    Root = 'xapo'
+    Root = 'pydist'
 
 class CreateBuyOrderRequestReceived(BaseModel):
     currency: str
@@ -30,7 +30,7 @@ class BtcPriceQuoted(BaseModel):
 
 class ConnectedToDatabase(BaseModel):
     database: str
-    port: str
+    port: int
     host: str
     user: str
 
@@ -77,6 +77,9 @@ class DatabaseMigrated(BaseModel):
 
 class WaitingForMigrations(BaseModel):
     pass
+
+class MigrationsServiceConnectionError(BaseModel):
+    error_text: str
 
 class DatabaseMigrationExceptionOccurred(BaseModel):
     database: str

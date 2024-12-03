@@ -27,7 +27,7 @@ def request_handler(request_name: str, log_event_model: Callable, callback: Call
             )
             raise HTTPException(
                 status_code=500, 
-                detail=f'an error occurred.  please contact xapo support and quote reference {error_reference}'
+                detail=f'an error occurred.  please contact pydist support and quote reference {error_reference}'
             )
     
     return handle

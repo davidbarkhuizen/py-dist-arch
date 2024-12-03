@@ -1,7 +1,4 @@
-FROM tiangolo/uvicorn-gunicorn:python3.8-alpine3.10
-WORKDIR /xapo
-RUN apk update
-RUN apk add linux-headers musl-dev build-base gcc python-dev postgresql-dev curl
-RUN /usr/local/bin/python -m pip install --upgrade pip
+FROM common-python-base:latest
+
 COPY codebase/services/fetch_buy_orders/requirements.txt ./requirements.txt
 RUN pip install -r ./requirements.txt
