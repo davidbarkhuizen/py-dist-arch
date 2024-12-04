@@ -1,1 +1,1 @@
-FROM queue_base:001
+FROM queue-base:latest

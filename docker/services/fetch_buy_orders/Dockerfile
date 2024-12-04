@@ -1,5 +1,3 @@
-FROM fetch_buy_orders_base:001
-WORKDIR /xapo
-COPY codebase/ ./codebase/
-WORKDIR /xapo/codebase/
+FROM fetch-buy-orders-base:latest
+
 CMD ["python", "fetch_buy_orders_service.py"]

@@ -1,7 +1,7 @@
 import traceback
 from util.web import url_for_endpoint
 import time
-from model.logevent import WaitingForMigrations
+from model.logevent import MigrationsServiceConnectionError, WaitingForMigrations
 from util.events import log_event
 from model.common import Endpoint
 import requests
@@ -19,6 +19,7 @@ class MigrationServiceClient:
             status_code = requests.get(url).status_code
             return status_code == 200
         except:
+            log_event(MigrationsServiceConnectionError(error_text=traceback.format_exc()))
             return False
 
     def wait_for_migrations(self):

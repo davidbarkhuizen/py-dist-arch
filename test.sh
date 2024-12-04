@@ -10,3 +10,5 @@ cd codebase \
     && export FETCH_BUY_ORDERS_PORT='8778' \
     && export FETCH_BUY_ORDERS_PATH='/buy_orders' \
     && python3 -m unittest discover -s test --pattern=*.py --verbose
+
+cd ..

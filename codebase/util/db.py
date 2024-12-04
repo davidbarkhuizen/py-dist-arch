@@ -1,11 +1,9 @@
+import traceback
 from typing import Optional
 from model.common import DatabaseEndPoint
 import time
 
 from sqlalchemy import create_engine
-from sqlalchemy.engine.base import Engine, Connection
-from sqlalchemy.exc import OperationalError
-from sqlalchemy.orm.session import Session
 from sqlalchemy.sql.expression import text
 
 from util.events import log_event
@@ -31,14 +29,14 @@ def get_tested_database_engine(ep: DatabaseEndPoint):
                 connected_db_name, = values.all()[0]
                 connection.close()
             
-        except OperationalError as e:
+        except:
             log_event(
                 FailedToConnectToDatabase(
                     database=ep.database,
-                    port=ep.port,
+                    port=str(ep.port),
                     host=ep.host,
                     user=ep.user,
-                    error=str(e)
+                    error=traceback.format_exc()
                 )
             )
             

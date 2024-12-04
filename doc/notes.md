@@ -4,8 +4,8 @@
 
 sudo apt-get install docker-ce=5:20.10.8~3-0~ubuntu-hirsute docker-ce-cli=5:20.10.8~3-0~ubuntu-hirsute containerd.io
 
-docker build -t restserver:001 .
-docker run -dp 3000:3000 restserver:001
+docker build -t restserver:latest .
+docker run -dp 3000:3000 restserver:latest
 
 docker logs $containerid -f
 
@@ -52,7 +52,7 @@ db    | The default database encoding has accordingly been set to "UTF8".
 db    | The default text search configuration will be set to "english".
 
 $ sudo su - postgres
-$ psql -f /home/david/code/xapo/codebase/model/migrations/write_model/001_base.sql 
+$ psql -f /home/david/code/pydist/codebase/model/migrations/write_model/latest_base.sql 
 
 # rabbitmq
 
