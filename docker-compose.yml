@@ -191,8 +191,8 @@ services:
       - log
       - write_model     
       - queue
-    logging:
-      driver: "none"
+    # logging:
+    #   driver: "none"
 
   fetch_buy_orders:
     container_name: ${FETCH_BUY_ORDERS_HOST}
