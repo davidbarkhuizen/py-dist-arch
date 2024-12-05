@@ -1,1 +1,1 @@
-FROM fluent/fluentd:v1.13.0-1.0
+FROM fluent/fluentd:v1.17-debian-amd64-1
